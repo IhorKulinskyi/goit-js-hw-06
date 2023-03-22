@@ -13,16 +13,20 @@ createBtnRef.addEventListener("click", createBoxes);
 destroyBtnRef.addEventListener("click", destroyBoxes);
 
 function createBoxes(amount) {
+  amount = inputValue.value;
+  boxesDiv.replaceChildren();
   const elements = [];
   let boxSide = 20;
-  amount = inputValue.value;
+
   for (let i = 0; i < amount; i += 1) {
     boxSide += 10;
     const newElement = document.createElement("div");
+    newElement.classList.add("box");
     newElement.style.backgroundColor = getRandomHexColor();
     newElement.style.width = `${boxSide}px`;
     newElement.style.height = `${boxSide}px`;
     newElement.style.marginBottom = "10px";
+    newElement.classList.add("rotateIn");
     elements.push(newElement);
   }
 
@@ -30,5 +34,10 @@ function createBoxes(amount) {
 }
 
 function destroyBoxes() {
-  boxesDiv.replaceChildren();
+  const boxes = boxesDiv.querySelectorAll(".box");
+  boxes.forEach((box) => {
+    box.classList.add("box-destroy");
+    setTimeout(() => box.remove(), 1000);
+  });
+  inputValue.value = "";
 }
