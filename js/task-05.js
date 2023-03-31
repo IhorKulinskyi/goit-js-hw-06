@@ -3,6 +3,13 @@ console.log(inputRef);
 const outputRef = document.querySelector("#name-output");
 console.log(outputRef);
 
+const DEFAULT_VALUE = outputRef.textContent;
+
 inputRef.addEventListener("input", (event) => {
-  outputRef.textContent = event.currentTarget.value;
+  if (event.currentTarget.value === '') {
+    outputRef.textContent = DEFAULT_VALUE;
+  } else {
+    outputRef.textContent = event.currentTarget.value;
+  }
+  
 });
